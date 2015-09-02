@@ -1,4 +1,4 @@
 # RedTeam
 WE ARE RED TEAM. READ THIS AND FEEL WELL READ.
 
-(THIS IS ALSO A TEST)
+myList.sh - a script that displays the contents of a directory in an HTML page.
