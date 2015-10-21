@@ -1,4 +1,4 @@
-import sys
+Inimport sys
 from mercurial import simplemerge
 
 print "Test Number 2"
