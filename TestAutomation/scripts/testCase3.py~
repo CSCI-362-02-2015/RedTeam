@@ -2,7 +2,7 @@ from mercurial import worker
 
 import sys
 
-oracleVal = str(sys.argv[1])
+oracleVal = int(sys.argv[1])
 
 outcome = worker.countcpus() == oracleVal
 
