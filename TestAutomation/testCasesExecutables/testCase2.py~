@@ -2,8 +2,8 @@ from mercurial import simplemerge
 
 import sys
 
-testVal = str(sys.argv[1])
-oracleVal = str(sys.argv[2])
+testVal = (0,100),(50,150)
+oracleVal = (50,100)
 
 outcome = simplemerge.intersect( (0,100),(50,150) ) == oracleVal
 

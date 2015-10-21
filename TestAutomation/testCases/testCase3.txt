@@ -1,1 +1,1 @@
-python testCase3.py 1
+python ~/RedTeam/TestAutomation/testCasesExecutables/testCase3.py 1

@@ -11,7 +11,7 @@ echo "<body>" >> ~/RedTeam/TestAutomation/reports/report.html
 echo -e "<h1 style="color:red"> Red Team - Mercurial Project: Test Output </h1>\n\n" >> ~/RedTeam/TestAutomation/reports/report.html
 
 # Initializing the variables for looping through the test files (FILES) and test number (testNum)
-FILES=~/RedTeam/TestAutomation/testCasesExecutables/*
+FILES=~/RedTeam/TestAutomation/testCases/*
 testNum=1
 
 # A loop which runs through the files in the scripts directory
@@ -20,7 +20,7 @@ for f in $FILES
 do
 	echo -e "<p>Test Number $testNum \n" >> ~/RedTeam/TestAutomation/reports/report.html
 	echo -e "$f </p>\n" >> ~/RedTeam/TestAutomation/reports/report.html
-	bash $f
+	bash $f >> ~/RedTeam/TestAutomation/reports/report.html
 
 	# Carriage return to a new line and increment the value of testNum
 	echo -e "\n" >> ~/RedTeam/TestAutomation/reports/report.html

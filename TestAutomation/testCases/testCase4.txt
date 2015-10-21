@@ -1,1 +1,1 @@
-python testCase4.py 'abcde' 5
+python ~/RedTeam/TestAutomation/testCasesExecutables/testCase4.py 'abcde' 5
