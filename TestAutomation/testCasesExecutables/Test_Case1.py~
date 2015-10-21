@@ -1,0 +1,11 @@
+import sys
+from mercurial import progress
+
+testVal = int(sys.argv[1])
+oracleVal = str(sys.argv[2])
+
+outcome = progress.fmtremaining(testVal) == oracleVal
+
+sys.stdout.write(str(outcome))
+sys.stdout.flush()
+sys.exit(0)

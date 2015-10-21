@@ -3,26 +3,26 @@ Red Team - Mercurial Project: Test Output
 
 Test Number 1 
 
-/home/jesse/RedTeam/TestAutomation/scripts/first_test.py
+/home/jesse/RedTeam/TestAutomation/scripts/first_test.py~
 
 
 Test Number 2 
 
-/home/jesse/RedTeam/TestAutomation/scripts/first_test.py~
+/home/jesse/RedTeam/TestAutomation/scripts/runAllTests.sh
 
 
 Test Number 3 
 
-/home/jesse/RedTeam/TestAutomation/scripts/Test_Case 2.py
+/home/jesse/RedTeam/TestAutomation/scripts/runAllTests.sh~
 
 
 Test Number 4 
 
-/home/jesse/RedTeam/TestAutomation/scripts/Test_Case 3.py
+/home/jesse/RedTeam/TestAutomation/scripts/Test_Case 2.py~
 
 
-Test Number 5 
-
-/home/jesse/RedTeam/TestAutomation/scripts/Test_Case 4.py
-
-
+TEST NAME
+Requirement: REQUIREMENT
+COMPONENT / METHOD 
+Test Input: INPUT  
+Expected Outcome: OUTCOME
