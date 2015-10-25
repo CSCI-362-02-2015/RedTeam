@@ -8,6 +8,6 @@ oracleVal = str(sys.argv[2])
 outcome = progress.fmtremaining(testVal) == oracleVal
 
 if outcome:
-	return 'PASS'
+	print 'PASS'
 else:
-	return 'FAIL'
+	print 'FAIL'

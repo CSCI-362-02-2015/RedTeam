@@ -34,5 +34,5 @@ for f in $FILES; do
 	exit
 done
 
-##echo "</body>" >> ~/RedTeam/TestAutomation/reports/report.html
-##echo "</HTML>" >> ~/RedTeam/TestAutomation/reports/report.html
+echo "</body>" >> ~/RedTeam/TestAutomation/reports/report.html
+echo "</HTML>" >> ~/RedTeam/TestAutomation/reports/report.html
