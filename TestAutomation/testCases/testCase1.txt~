@@ -1,8 +1,0 @@
-python ~/RedTeam/TestAutomation/testCasesExecutables/testCase1.py 100 '1m40s'
-
-ID: 1
-Requirement: Break a given integer into the largest increments of time it can be broken into
-Component: progress.py
-Method: fmtremaining( (int) seconds)
-Input(s): 100
-Expected Outcome: 1m40s

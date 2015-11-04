@@ -1,6 +1,6 @@
 5
 Return elements in array concatenated into one element in a larger array
-namespaces.py
+namespaces
 tolist(String[] items)
 ‘1’ ‘2’ ‘3’ ‘4’
 [‘1234’]

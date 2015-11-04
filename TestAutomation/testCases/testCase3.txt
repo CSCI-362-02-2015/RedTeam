@@ -1,6 +1,6 @@
 3
 Counts the number of processors available to the operating system
-worker.py
+worker
 countcpus()
 N/A
 1
