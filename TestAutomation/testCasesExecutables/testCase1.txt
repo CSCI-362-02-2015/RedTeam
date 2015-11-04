@@ -1,0 +1,9 @@
+~/RedTeam/TestAutomation/testCasesExcutables/testCase1.py
+
+1
+Given an integer, breakdown the interger to the largest possible 2 units of time.
+Progress.py
+fmtremaining(int)
+100
+1m40s
+

@@ -1,0 +1,6 @@
+14
+Given the range of two points, calculate the point of overlap between them
+simplemerge.py
+intersect(ra,rb)
+(0,2), (1,15)
+(1,2)
