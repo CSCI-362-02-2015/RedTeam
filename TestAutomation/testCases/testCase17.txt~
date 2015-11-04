@@ -1,6 +1,6 @@
 17
 Return the length of the given string
 templatefilters
-count
+count(String i)
 "  n  "
 5

@@ -1,6 +1,6 @@
-22
+25
 Return elements in array concatenated into one element in a larger array
 namespaces
-tolist
-"This"" ""is"" ""a"" ""sentence."
-[‘This is a sentence.’]
+tolist(String[] items)
+""
+['']

@@ -1,6 +1,6 @@
 23
 Return elements in array concatenated into one element in a larger array
 namespaces
-tolist(String[] items)
+tolist
 "1""+""2""=""3"
 ['1+2=3']

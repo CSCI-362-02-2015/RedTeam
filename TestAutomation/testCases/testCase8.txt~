@@ -1,6 +1,6 @@
-10
+8
 Break a given integer into the largest increments of time it can be broken into
 progress
-fmtremaining
-86401
-24h01m
+fmtremaining( (int) seconds)
+3601
+1h01m
