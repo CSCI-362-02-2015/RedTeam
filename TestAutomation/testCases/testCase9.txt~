@@ -1,6 +1,0 @@
-9
-Break a given integer into the largest increments of time it can be broken into
-progress
-fmtremaining( (int) seconds)
-3599
-59m59s

@@ -1,8 +1,0 @@
-2
-Given the range of two points, calculate the point of overlap between them
-simplemerge
-intersect(ra,rb)
-(0,100), (50,150)
-(50,100)
-
-~/RedTeam/TestAutomation/testCasesExecutables/testCase2.py

@@ -7,6 +7,7 @@ import glob
 path = os.path.expanduser("~/RedTeam/TestAutomation/testCases/")
 os.chdir(path)
 listing = os.listdir(path)
+listing.sort()
 import_base = "from mercurial import "
 
 #Counts the test cases in the testCases folder
@@ -17,7 +18,7 @@ if count < 1:
 	print "There are no test cases.  Be Better..."
 else:
 	for infile in listing:
-		print "Current File: " + infile
+		#print "Current File: " + infile
 	
 		with open(path + '/' + infile) as f:
 			testList = f.read().splitlines()
