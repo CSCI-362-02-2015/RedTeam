@@ -1,8 +1,8 @@
 1
 Break a given integer into the largest increments of time it can be broken into
 progress
-fmtremaining( (int) seconds)
+fmtremaining
 100
 1m40s
 
-python ~/RedTeam/TestAutomation/testCasesExecutables/testCase1.py 100 '1m40s'
+

@@ -1,8 +1,8 @@
 3
 Counts the number of processors available to the operating system
-worker.py
-countcpus()
+worker
+countcpus
 N/A
 1
 
-python ~/RedTeam/TestAutomation/testCasesExecutables/testCase3.py 1
+

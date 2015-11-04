@@ -2,5 +2,5 @@
 Return elements in array concatenated into one element in a larger array
 namespaces
 tolist(String[] items)
-'This'' ''is'' ''a'' ''sentence.'
+"This"" ""is"" ""a"" ""sentence."
 [‘This is a sentence.’]

@@ -1,6 +1,6 @@
 20
 Return the length of the given string
 templatefilters
-count(String i)
+count
 "hello" "world"
 10
