@@ -1,8 +1,6 @@
-2
+15
 Given the range of two points, calculate the point of overlap between them
-simplemerge.py
+simplemerge
 intersect
-(0,100), (50,150)
-(50,100)
-
-
+(0,10), (10,0)
+Error
