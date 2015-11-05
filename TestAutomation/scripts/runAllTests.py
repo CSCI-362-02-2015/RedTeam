@@ -4,8 +4,14 @@ import os
 import glob
 
 #Change working directory to testCasesExecutables
-path = os.path.expanduser("~/RedTeam/TestAutomation/testCases/")
-os.chdir(path)
+#path = os.path.expanduser("~/RedTeam/TestAutomation/testCases/")
+
+path = os.getcwd() #####
+path = os.path.abspath(os.path.join(path, os.pardir)) + "/testCases"
+
+
+
+os.chdir(path) 
 listing = os.listdir(path)
 listing.sort()
 import_base = "from mercurial import "
