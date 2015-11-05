@@ -5,19 +5,28 @@ import glob
 
 #Change working directory to testCasesExecutables
 
-#path = os.path.expanduser("~/RedTeam/TestAutomation/testCases/")
+#testCasePath = os.testCasePath.expanduser("~/RedTeam/TestAutomation/testCases/")
 path = os.getcwd() 
-path = os.path.abspath(os.path.join(path, os.pardir)) + "/testCases"
+testCasePath = os.path.abspath(os.path.join(path, os.pardir)) + "/testCases"
+reportPath = os.path.abspath(os.path.join(path, os.pardir)) + "/reports"
+print reportPath
 
-
-
-os.chdir(path) 
-listing = os.listdir(path)
+os.chdir(testCasePath) 
+listing = os.listdir(testCasePath)
 listing.sort()
 import_base = "from mercurial import "
 
 #Counts the test cases in the testCases folder
 count = len(listing)
+
+#Delete old report and create/open new report for appending test case info
+if os.path.exists(reportPath + "/report.hmtl"):
+  os.remove(reportPath + "/report.html")
+  
+
+
+report = open(reportPath + "/report.html", 'a+')
+
 
 #If statement to check if the folder has test cases
 if count < 1:
@@ -29,7 +38,7 @@ else:
         for infile in listing:
                 #print "Current File: " + infile
                 try:
-                        with open(path + '/' + infile) as f:
+                        with open(testCasePath + '/' + infile, 'r') as f:
                                 testList = f.read().splitlines()
                         iden = testList[0]
                         req = testList[1]
@@ -55,6 +64,7 @@ else:
                         statement = 'print(' + component + "." + method + "(" + inp + ")" + ")"
                         exec(statement)
                         passCount += 1
+                        
                 except:
                         failCount += 1
                         e = sys.exc_info()[0]
@@ -63,12 +73,14 @@ else:
                         print(e)
                         print 
                         print "Continuing..."
-                
+                f.close()
                 print('\n')
 
-        print "Number of Tests: " + str(count)
-        print "Passed: " + str(passCount)
-        print "Failed: " + str(failCount) + "\n"
+        #Print Stats at the end        
+        print "Number of Tests: {}".format(count)
+        print "Passed: {}".format(passCount)
+        print "Failed: {}\n".format(failCount)
         print "Done"
+        report.close()
 
         
