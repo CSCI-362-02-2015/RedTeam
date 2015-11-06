@@ -9,7 +9,7 @@ import glob
 path = os.getcwd() 
 testCasePath = os.path.abspath(os.path.join(path, os.pardir)) + "/testCases"
 reportPath = os.path.abspath(os.path.join(path, os.pardir)) + "/reports"
-print reportPath
+
 
 os.chdir(testCasePath) 
 listing = os.listdir(testCasePath)
@@ -19,18 +19,14 @@ import_base = "from mercurial import "
 #Counts the test cases in the testCases folder
 count = len(listing)
 
-#Delete old report and create/open new report for appending test case info
-if os.path.exists(reportPath + "/report.hmtl"):
-  os.remove(reportPath + "/report.html")
-  
 
-
-report = open(reportPath + "/report.html", 'a+')
-
+report = open(reportPath + "/report.html", 'w+')
+report.write("<html><body>")
 
 #If statement to check if the folder has test cases
 if count < 1:
-        print "There are no test cases.  Be Better..."
+  report.write("No test cases found in test directory")
+  print "There are no test cases.  Be Better..."
 else:
         passCount = 0 #number of passed tests
         failCount = 0 #numer of failed tests
@@ -64,6 +60,7 @@ else:
                         statement = 'print(' + component + "." + method + "(" + inp + ")" + ")"
                         exec(statement)
                         passCount += 1
+                        report.write("{}&nbsp{}&nbsp{}&nbsp{}<br>".format(iden, "test", outcome, "pass"))
                         
                 except:
                         failCount += 1
@@ -76,6 +73,7 @@ else:
                 f.close()
                 print('\n')
 
+        report.write("</body></html>")
         #Print Stats at the end        
         print "Number of Tests: {}".format(count)
         print "Passed: {}".format(passCount)
