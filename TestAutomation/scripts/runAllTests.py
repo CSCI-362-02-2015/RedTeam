@@ -2,11 +2,21 @@
 
 # runAllTests.py
 
-import os, sys
-import glob
+import os, sys, glob, StringIO, contextlib
+
 
 #Change working directory to testCasesExecutables
 
+@contextlib.contextmanager
+def stdoutIO(stdout=None):
+	old = sys.stdout
+	if stdout is None:
+		stdout = StringIO.StringIO()
+		sys.stdout = stdout
+		yield stdout
+		sys.stdout = old
+
+	
 
 
 def main():
@@ -57,16 +67,26 @@ def main():
                           import_module = import_base + component
                           exec( import_module )
                           
-                          print "Requirements: ", req
-                          print "Component: ", component
-                          print "Method: ", method
-                          print "Input: ", inp
-                          print "Expected Outcome: ", outcome
+##                          print "Requirements: ", req
+##                          print "Component: ", component
+##                          print "Method: ", method
+##                          print "Input: ", inp
+##                          print "Expected Outcome: ", outcome
+                          
                           statement = 'print(' + component + "." + method + "(" + inp + ")" + ")"
                           ##statement = 'print(' + component + "." + method + "(" + inp + ")" + "> testing.txt)"
+                          
 
-                          exec(statement)
+                          
+##                          code = compile(statement, "script", "exec")
 
+                          
+                          print exec(statement).stdoutIO().getValue()
+
+                          
+
+
+                          
                           passCount += 1
                           passFormat = passFormat.format(iden, inp, outcome, "PASS")
                           report.write(passFormat)
@@ -82,8 +102,14 @@ def main():
                           print "Continuing..."
                   
                   print('\n')
+
+                  
           f.close()
-          report.write("</table></body></html>")
+          report.write("</table>")
+          report.write("</br></brb>Number of Tests: " + str(count) + "</br>")
+          report.write("Passed: " + str(passCount) + "</br>")
+          report.write("Failed: " + str(failCount))
+          report.write("</body></html>")
           report.close()
           printSummary(count, passCount, failCount)
 
@@ -109,6 +135,9 @@ def printSummary(count, passCount, failCount):
   print "Passed: {}".format(passCount)
   print "Failed: {}\n".format(failCount)
   print "Done"
+
+
+
 
 if __name__ == "__main__":
   main()
