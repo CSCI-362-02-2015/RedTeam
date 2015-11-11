@@ -30,7 +30,7 @@ def main():
      print "There are no test cases.  Be Better..."
   else:
      runTests(report, count)
-     webbrowser.open(reportPath)
+     webbrowser.get('Firefox').open(reportPath)
 
 def runTests(report, count):
 
