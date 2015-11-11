@@ -2,7 +2,7 @@
 
 # runAllTests.py
 
-import os, sys, glob, StringIO, contextlib
+import os, sys, glob, StringIO, contextlib, webbrowser
 
 
 #Change working directory to testCasesExecutables
@@ -59,40 +59,38 @@ def main():
 
                           print "ID: ", iden
 
-                          passFormat = '<tr bgcolor="#00FF00"><td>{}</td><td>{}</td><td>TODO</td><td>{}</td><td>{}</td></tr>'
-                          failFormat = '<tr bgcolor ="#FF0000"><td>{}</td><td>{}</td><td>Outcome</td><td>{}</td><td>{}</td></tr>'
+                          passFormat = '<tr bgcolor="#00FF00"><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'
+                          failFormat = '<tr bgcolor ="#FF0000"><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'
 
                           #Execute test file script
                   
                           import_module = import_base + component
                           exec( import_module )
                           
-##                          print "Requirements: ", req
-##                          print "Component: ", component
-##                          print "Method: ", method
-##                          print "Input: ", inp
-##                          print "Expected Outcome: ", outcome
+                          print "Requirements: ", req
+                          print "Component: ", component
+                          print "Method: ", method
+                          print "Input: ", inp
+                          print "Expected Outcome: ", outcome
                           
-                          statement = 'print(' + component + "." + method + "(" + inp + ")" + ")"
-                          ##statement = 'print(' + component + "." + method + "(" + inp + ")" + "> testing.txt)"
+                          statement = component + "." + method+  "(" + inp + ")"
                           
+                          
+                          result = eval(statement)
+                          print "Result: " + str(result)
 
-                          
-##                          code = compile(statement, "script", "exec")
-
-                          
-                          print exec(statement).stdoutIO().getValue()
-
-                          
-
-
-                          
-                          passCount += 1
-                          passFormat = passFormat.format(iden, inp, outcome, "PASS")
-                          report.write(passFormat)
+                          if (str(result) == outcome):
+                              passCount += 1
+                              passFormat = passFormat.format(iden, inp, outcome, str(result), "PASS")
+                              report.write(passFormat)
+                          else:
+                              failCount += 1
+                              failFormat = failFormat.format(iden, inp, outcome, str(result), "FAIL")
+                              report.write(failFormat)
+                              
                   except:
                           failCount += 1
-                          failFormat = failFormat.format(iden, inp, outcome, "FAIL")
+                          failFormat = failFormat.format(iden, inp, outcome, "ERROR", "FAIL")
                           report.write(failFormat)
                           e = sys.exc_info()[0]
                           print "Unable to execute TestID[" + iden + "]"
@@ -112,6 +110,7 @@ def main():
           report.write("</body></html>")
           report.close()
           printSummary(count, passCount, failCount)
+          webbrowser.open_new_tab(reportPath)
 
 def writeOpeningInfo(reportPath):
   
@@ -123,8 +122,8 @@ def writeOpeningInfo(reportPath):
   report.write("<tr>")
   report.write("<td><b>Test ID</b></td>")
   report.write("<td><b>Input</b></td>")
-  report.write("<td><b>Output</b></td>")
-  report.write("<td><b>Expected</b></td>")
+  report.write("<td><b>Expected Output</b></td>")
+  report.write("<td><b>Actual Output</b></td>")
   report.write("<td><b>Pass/Fail</b></td>")
   report.close()
 
@@ -135,6 +134,8 @@ def printSummary(count, passCount, failCount):
   print "Passed: {}".format(passCount)
   print "Failed: {}\n".format(failCount)
   print "Done"
+
+
 
 
 
