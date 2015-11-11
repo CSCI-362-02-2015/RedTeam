@@ -79,7 +79,7 @@ def main():
                           result = eval(statement)
                           print "Result: " + str(result)
 
-                          if (str(result) == outcome):
+                          if (str(result) == str(outcome)):
                               passCount += 1
                               passFormat = passFormat.format(iden, inp, outcome, str(result), "PASS")
                               report.write(passFormat)
