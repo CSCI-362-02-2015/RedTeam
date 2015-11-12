@@ -1,6 +1,0 @@
-15
-Given the range of two points, calculate the point of overlap between them
-simplemerge
-intersect
-(0,10), (10,0)
-Error

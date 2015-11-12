@@ -1,0 +1,14 @@
+Below is the format for creating test cases for Mercurial
+
+Information within <>'s should be replaced with information indicated in comments.
+
+Comments (starting with #) should not be written into your test file
+
+NOTE: When writing the component, DO NOT include the .py extension
+
+<ID> 			#The test case number
+<Requirement> 		#What this test case should achieve  
+<Component> 		#Class whose method is being tested 
+<Method> 		#Specific method being tested
+<Input(s)> 		#Parameters the method will take
+<Expected Outcome> 	#Result the method should return
