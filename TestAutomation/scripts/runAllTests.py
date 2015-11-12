@@ -67,17 +67,19 @@ def runTests(report, count):
                                 statement = component + "." + method+  "(" + inp + ")"
                                 result = eval(statement)
                                 print "Result: " + str(result)
-                                print('\n')
+                                
 
 
                                 if (str(result) == str(outcome)):
                                         passCount += 1
                                         passFormat = passFormat.format(iden, inp, outcome, str(result), "PASS")
                                         report.write(passFormat)
+                                        print("PASS\n")
                                 else:
                                         failCount += 1
                                         failFormat = failFormat.format(iden, inp, outcome, str(result), "FAIL")
                                         report.write(failFormat)
+                                        print("FAIL\n")
                 except:
                         failCount += 1
                         failFormat = failFormat.format(iden, inp, outcome, "ERROR", "FAIL")
