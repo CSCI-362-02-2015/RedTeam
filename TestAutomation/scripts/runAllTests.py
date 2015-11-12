@@ -11,114 +11,97 @@
 import os, sys, glob, StringIO, contextlib, webbrowser
 
 
-#Change working directory to testCasesExecutables
+path = os.getcwd() 
+testCasePath = os.path.abspath(os.path.join(path, os.pardir, "testCases"))
+reportPath = os.path.abspath(os.path.join(path, os.pardir, "reports/report.html"))
+os.chdir(testCasePath) 
+listing = os.listdir(testCasePath)
+listing.sort()
+import_base = "from mercurial import "
 
-@contextlib.contextmanager
-def stdoutIO(stdout=None):
-	old = sys.stdout
-	if stdout is None:
-		stdout = StringIO.StringIO()
-		sys.stdout = stdout
-		yield stdout
-		sys.stdout = old
-
-	
 
 
 def main():
-  #testCasePath = os.testCasePath.expanduser("~/RedTeam/TestAutomation/testCases/")
-  path = os.getcwd() 
-  testCasePath = os.path.abspath(os.path.join(path, os.pardir, "testCases"))
-  reportPath = os.path.abspath(os.path.join(path, os.pardir, "reports/report.html"))
-  os.chdir(testCasePath) 
-  listing = os.listdir(testCasePath)
-  listing.sort()
-  import_base = "from mercurial import "
 
+        
   #Counts the test cases in the testCases folder
   count = len(listing)
-
-  writeOpeningInfo(reportPath)
+  writeOpeningHTML()
   report = open(reportPath, 'a+')
-
-
 
   #If statement to check if the folder has test cases
   if count < 1:
-    report.write("No test cases found in test directory")
-    print "There are no test cases.  Be Better..."
+     report.write("No test cases found in test directory")
+     report.close()
+     print "There are no test cases.  Be Better..."
   else:
-          passCount = 0 #number of passed tests
-          failCount = 0 #numer of failed tests
+     runTests(report, count)
+     webbrowser.get('Firefox').open(reportPath)
+
+def runTests(report, count):
+
+        passCount = 0 #number of passed tests
+        failCount = 0 #numer of failed tests
           
-          for infile in listing:
-                  #print "Current File: " + infile
-                  try:
-                          with open(testCasePath + '/' + infile, 'r') as f:
-                                  testList = f.read().splitlines()
-                          iden = testList[0]
-                          req = testList[1]
-                          component = testList[2]
-                          method = testList[3]
-                          inp = testList[4]
-                          outcome = testList[5]
+        for infile in listing:
+                try:
+                        with open(testCasePath + '/' + infile, 'r') as f:
+                                testList = f.read().splitlines()
+                                iden = testList[0]
+                                req = testList[1]
+                                component = testList[2]
+                                method = testList[3]
+                                inp = testList[4]
+                                outcome = testList[5]
+                                
+                                print "ID: ", iden
+                                
+                                passFormat = '<tr bgcolor="#00FF00"><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'
+                                failFormat = '<tr bgcolor ="#FF0000"><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'
 
-                          print "ID: ", iden
 
-                          passFormat = '<tr bgcolor="#00FF00"><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'
-                          failFormat = '<tr bgcolor ="#FF0000"><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'
+                                #Execute test file script
+                                import_module = import_base + component
+                                exec( import_module )
+                                print "Requirements: ", req
+                                print "Component: ", component
+                                print "Method: ", method
+                                print "Input: ", inp
+                                print "Expected Outcome: ", outcome
 
-                          #Execute test file script
-                  
-                          import_module = import_base + component
-                          exec( import_module )
-                          
-                          print "Requirements: ", req
-                          print "Component: ", component
-                          print "Method: ", method
-                          print "Input: ", inp
-                          print "Expected Outcome: ", outcome
-                          
-                          statement = component + "." + method+  "(" + inp + ")"
-                          
-                          
-                          result = eval(statement)
-                          print "Result: " + str(result)
 
-                          if (str(result) == str(outcome)):
-                              passCount += 1
-                              passFormat = passFormat.format(iden, inp, outcome, str(result), "PASS")
-                              report.write(passFormat)
-                          else:
-                              failCount += 1
-                              failFormat = failFormat.format(iden, inp, outcome, str(result), "FAIL")
-                              report.write(failFormat)
-                              
-                  except:
-                          failCount += 1
-                          failFormat = failFormat.format(iden, inp, outcome, "ERROR", "FAIL")
-                          report.write(failFormat)
-                          e = sys.exc_info()[0]
-                          print "Unable to execute TestID[" + iden + "]"
-                          print "Please check formatting and inputs of test case"
-                          print(e)
-                          print 
-                          print "Continuing..."
-                  
-                  print('\n')
+                                statement = component + "." + method+  "(" + inp + ")"
+                                result = eval(statement)
+                                print "Result: " + str(result)
+                                
 
-                  
-          f.close()
-          report.write("</table>")
-          report.write("</br></brb>Number of Tests: " + str(count) + "</br>")
-          report.write("Passed: " + str(passCount) + "</br>")
-          report.write("Failed: " + str(failCount))
-          report.write("</body></html>")
-          report.close()
-          printSummary(count, passCount, failCount)
-          webbrowser.open_new_tab(reportPath)
 
-def writeOpeningInfo(reportPath):
+                                if (str(result) == str(outcome)):
+                                        passCount += 1
+                                        passFormat = passFormat.format(iden, inp, outcome, str(result), "PASS")
+                                        report.write(passFormat)
+                                        print("PASS\n")
+                                else:
+                                        failCount += 1
+                                        failFormat = failFormat.format(iden, inp, outcome, str(result), "FAIL")
+                                        report.write(failFormat)
+                                        print("FAIL\n")
+                except:
+                        failCount += 1
+                        failFormat = failFormat.format(iden, inp, outcome, "ERROR", "FAIL")
+                        report.write(failFormat)
+                        e = sys.exc_info()[0]
+                        print "Unable to execute TestID[" + iden + "]"
+                        print "Please check formatting and inputs of test case"
+                        print(e)
+                        print "Continuing..."
+                        print('\n')
+        f.close()
+
+        writeClosingHTML(report, count, passCount, failCount)
+        printSummary(count, passCount, failCount)
+
+def writeOpeningHTML():
   
   report = open(reportPath, 'w+')
   report.write("<!DOCTYPE html>")
@@ -134,8 +117,17 @@ def writeOpeningInfo(reportPath):
   report.close()
 
 
+def writeClosingHTML(report, count, passCount, failCount):
+  report.write("</table>")
+  report.write("</br></brb>Number of Tests: " + str(count) + "</br>")
+  report.write("Passed: " + str(passCount) + "</br>")
+  report.write("Failed: " + str(failCount))
+  report.write("</body></html>")
+  report.close()
+
+
 def printSummary(count, passCount, failCount):
-  #Print Stats at the end        
+  #Print Stats at the end     
   print "Number of Tests: {}".format(count)
   print "Passed: {}".format(passCount)
   print "Failed: {}\n".format(failCount)
