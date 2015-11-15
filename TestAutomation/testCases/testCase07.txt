@@ -1,5 +1,5 @@
-7
-Break a given integer into the largest increments of time it can be broken into
+07
+Break a given integer (representing time in seconds) into largest units of time possible
 progress
 fmtremaining
 0

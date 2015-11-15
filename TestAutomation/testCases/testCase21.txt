@@ -1,5 +1,5 @@
 21
-Return elements in array concatenated into one element in a larger array
+Return elements in given array concatenated into one element in a larger arrays
 namespaces
 tolist
 "add" "These" "Words" "Together"

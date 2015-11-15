@@ -1,5 +1,5 @@
 03
-Counts the number of processors available to the operating system
+Returns the number of processors available to the operating system
 worker
 countcpus
 
