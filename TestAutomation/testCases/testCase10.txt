@@ -2,5 +2,5 @@
 Break a given integer (representing time in seconds) into largest units of time possible
 progress
 fmtremaining
-86401
-24h01m
+-59
+-59s
