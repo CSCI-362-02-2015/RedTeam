@@ -163,10 +163,6 @@ def printSummary(count, passCount, failCount):
 #assumes user has Chrome installed
 #otherwise attempts to open Firefox
 def openReport():
-  try:
-    chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
-    webbrowser.get(chrome_path).open(reportPath)
-  except:
     webbrowser.get('Firefox').open(reportPath)
     
 
