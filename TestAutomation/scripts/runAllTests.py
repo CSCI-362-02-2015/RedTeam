@@ -78,8 +78,8 @@ def runTests(report, count):
 
 
                                 ##Format: TestID, Component/Method, Input, Expected Output, Actual Output, Pass/Fail
-                                passFormat = '<tr bgcolor="#00FF00"><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'   
-                                failFormat = '<tr bgcolor ="#FF0000"><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'
+                                passFormat = '<tr bgcolor="#00FF00"><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'   
+                                failFormat = '<tr bgcolor ="#FF0000"><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>'
 
 
                                 #Execute test file script
@@ -100,17 +100,17 @@ def runTests(report, count):
 
                                 if (str(result) == str(outcome)):
                                         passCount += 1
-                                        passFormat = passFormat.format(iden, compAndMethod, inp, outcome, str(result), "PASS")
+                                        passFormat = passFormat.format(iden, compAndMethod, req, inp, outcome, str(result), "PASS")
                                         report.write(passFormat)
                                         print("PASS\n")
                                 else:
                                         failCount += 1
-                                        failFormat = failFormat.format(iden, compAndMethod, inp, outcome, str(result), "FAIL")
+                                        failFormat = failFormat.format(iden, compAndMethod, req, inp, outcome, str(result), "FAIL")
                                         report.write(failFormat)
                                         print("FAIL\n")
                 except:
                         failCount += 1
-                        failFormat = failFormat.format(iden, compAndMethod, inp, outcome, "ERROR", "FAIL")
+                        failFormat = failFormat.format(iden, compAndMethod, req, inp, outcome, "ERROR", "FAIL")
                         report.write(failFormat)
                         e = sys.exc_info()[0]
                         print "Unable to execute TestID[" + iden + "]"
@@ -137,6 +137,7 @@ def writeOpeningHTML():
   report.write("<tr>")
   report.write("<td><b>Test ID</b></td>")
   report.write("<td><b>Component.method()</b></td>")
+  report.write("<td><b>Requirements</b></td>")
   report.write("<td><b>Input</b></td>")
   report.write("<td><b>Expected Output</b></td>")
   report.write("<td><b>Actual Output</b></td>")
