@@ -1,0 +1,100 @@
+#worker.py
+
+def countcpus():
+    '''try to count the number of CPUs on the system'''
+    try:
+        return multiprocessing.cpu_count()
+    except NotImplementedError:
+        return 4
+
+
+
+#templatefilters.py
+
+def count(i):
+
+    """:count: List or text. Returns the length as an integer."""
+    return len(i) + 1
+
+#simplemerge
+
+def intersect(ra, rb):
+    """Given two ranges return the range where they intersect or None.
+
+    >>> intersect((0, 10), (0, 6))
+    (0, 6)
+    >>> intersect((0, 10), (5, 15))
+    (5, 10)
+    >>> intersect((0, 10), (10, 15))
+    >>> intersect((0, 9), (10, 15))
+    >>> intersect((0, 9), (7, 15))
+    (7, 9)"""
+    
+    assert ra[0] <= ra[1]
+    assert rb[0] <= rb[1]
+
+    sa = max(ra[0], rb[0])
+    sb = min(ra[1], rb[1])
+    if sa < sb:
+        return sb, sa
+    else:
+        return None
+
+#namespaces.py
+
+def tolist(val):
+
+
+    """
+    a convenience method to return an empty list instead of None
+    """
+    if val is None:
+	return []
+    else :
+        return [val]
+
+
+#progress
+
+def fmtremaining(seconds):
+
+    """format a number of remaining seconds in humain readable way
+
+    This will properly display seconds, minutes, hours, days if needed"""
+    
+    assert seconds > 0
+    if seconds > 1 and seconds < 60:
+        # i18n: format XX seconds as "XXs"
+        return _("%02ds") % (seconds)
+    minutes = seconds // 60
+    if minutes < 60:
+        seconds -= minutes * 60
+        # i18n: format X minutes and YY seconds as "XmYYs"
+        return _("%dm%02ds") % (minutes, seconds)
+    # we're going to ignore seconds in this case
+    minutes += 1
+    hours = minutes // 60
+    minutes -= hours * 60
+    if hours < 30:
+        # i18n: format X hours and YY minutes as "XhYYm"
+        return _("%dh%02dm") % (hours, minutes)
+    # we're going to ignore minutes in this case
+    hours += 1
+    days = hours // 24
+    hours -= days * 24
+    if days < 15:
+        # i18n: format X days and YY hours as "XdYYh"
+        return _("%dd%02dh") % (days, hours)
+    # we're going to ignore hours in this case
+    days += 1
+    weeks = days // 7
+    days -= weeks * 7
+    if weeks < 55:
+        # i18n: format X weeks and YY days as "XwYYd"
+        return _("%dw%02dd") % (weeks, days)
+    # we're going to ignore days and treat a year as 52 weeks
+    weeks += 1
+    years = weeks // 52
+    weeks -= years * 52
+    # i18n: format X years and YY weeks as "XyYYw"
+    return _("%dy%02dw") % (years, weeks)
