@@ -1,11 +1,13 @@
 #worker.py
 
 def countcpus():
-    '''try to count the number of CPUs on the system'''
+    '''try to count the number of CPUs on the system
+    doubled the amount of the cpu_count()
+    '''
     try:
-        return multiprocessing.cpu_count()
+        return multiprocessing.cpu_count() * 2
     except NotImplementedError:
-        return 4
+        return 1
 
 
 
@@ -13,8 +15,10 @@ def countcpus():
 
 def count(i):
 
-    """:count: List or text. Returns the length as an integer."""
+    """:count: List or text. Returns the length as an integer.
+    added a +1 to the return statement"""
     return len(i) + 1
+
 
 #simplemerge
 
@@ -35,6 +39,7 @@ def intersect(ra, rb):
 
     sa = max(ra[0], rb[0])
     sb = min(ra[1], rb[1])
+    """ reversed the return statement"""
     if sa < sb:
         return sb, sa
     else:
@@ -47,9 +52,11 @@ def tolist(val):
 
     """
     a convenience method to return an empty list instead of None
+
+    changed [] to 'Empty List'
     """
     if val is None:
-	return []
+	return 'Empty List' 
     else :
         return [val]
 
@@ -60,10 +67,12 @@ def fmtremaining(seconds):
 
     """format a number of remaining seconds in humain readable way
 
-    This will properly display seconds, minutes, hours, days if needed"""
+    This will properly display seconds, minutes, hours, days if needed
+    added > 0 and seconds to the first if statement
+    """
     
-    assert seconds > 0
-    if seconds > 1 and seconds < 60:
+    
+    if seconds > 0 and seconds < 60:
         # i18n: format XX seconds as "XXs"
         return _("%02ds") % (seconds)
     minutes = seconds // 60
