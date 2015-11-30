@@ -21,6 +21,7 @@ Readme for for Red Team's Mercurial project
 		$ python runAllTests.py
 
 3. Creating a test case
+
 	To create a test case, you must create a .txt file in the /testCases directory. The test cases execute in alphanumeric order based on file name, so be aware the label you attribute to the text may not match up with the file name.
 
 		i. Create .txt file in /testCases
