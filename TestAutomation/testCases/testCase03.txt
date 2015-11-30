@@ -1,5 +1,5 @@
 03
-Returns the number of processors available to the operating system
+Returns the number of processors available to the operating system (This test assumes you are running a single-processor virtual machine, so it will fail if more than 1 processor is available to the operating system)
 worker
 countcpus
 
