@@ -2,7 +2,7 @@ Readme for for Red Team's Mercurial project
 
 1. Building Mercurial
 
-	To build Mercurial, follow the steps below. 
+	To build Mercurial, follow the steps below (in terminal). 
 	** If you are changing the source code, you must also follow the below steps before the test script will execute the altered code. **
 
 		i.Install Python developer module
@@ -13,16 +13,19 @@ Readme for for Red Team's Mercurial project
 
 			$ sudo make install
 
+
 2. Running the test script
 
-	Navigate to the /scripts directory
+	25 test cases have already been created. To run these tests:
+
+	In terminal, navigate to the /scripts directory
 	Execute the following code:
 
 		$ python runAllTests.py
 
 3. Creating a test case
 
-	To create a test case, you must create a .txt file in the /testCases directory. The test cases execute in alphanumeric order based on file name, so be aware the label you attribute to the text may not match up with the file name.
+	To create a test case, you must create a .txt file in the /testCases directory. The test cases execute in alphanumeric order based on file name, so be aware the label you attribute to the text may not match up with the file name. A sample test case template can be found under TestAutomation/docs/testCase_TEMPLATE.txt. Overview instructions can be found below.
 
 		i. Create .txt file in /testCases
 		ii. Enter information in the following order:
