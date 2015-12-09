@@ -45,5 +45,15 @@ Readme for for Red Team's Mercurial project
 
 	/usr/local/lib/python2.7/dist-packages/mercurial/
 
+	After navigating to the mercurial folder, you will need to modify the permissions of the files that are to be edited.
+
+		While in the mercurial folder, execute the following commands one at a time: 
+
+			sudo chown <user> progress.py
+			sudo chown <user> namespaces.py
+			sudo chown <user> templatefilters.py
+			sudo chown <user> simplemerge.py
+			sudo chown <user> worker.py
+
 
 
