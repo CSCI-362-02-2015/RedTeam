@@ -5,11 +5,13 @@ Readme for for Red Team's Mercurial project
 	To build Mercurial, follow the steps below (in terminal). 
 	** If you are changing the source code, you must also follow the below steps before the test script will execute the altered code. **
 
-		i.Install Python developer module
+		i.  Download repo of Mercurial (mercurial-scm.org).  Extract files to the RedTeam folder.
 
-			$ sudo apt-get install python-dev
+		ii. Install Python developer module
 
-		ii. Navigate to the /src directory. From there, execute the build using the following command:
+			sudo apt-get install python-dev
+
+		iii.  Navigate to the mercurial-3.6.2/ directory through the RedTeam folder. From there, execute the build using the following command:
 
 			$ sudo make install
 
@@ -35,4 +37,13 @@ Readme for for Red Team's Mercurial project
 			Line 4: Method
 			Line 5: Input
 			Line 6: Expected Output (Exactly as the IDE would display it)
+
+
+4. Editing the source code.
+
+	The source code files are saved in the Python library.  To access these files you must go to files on the task bar. Then go to computer.  In computer go the 'usr' folder.  In the usr folder go to the 'local' folder.  In the local folder go to the 'lib' folder.  In the lib folder go to the 'python2.7' folder.  In the python2.7 folder go to the 'dist-packages' folder.  In the dist-packages folder go to the mercurial folder.  This is where the files to edit are located.
+
+	/usr/local/lib/python2.7/dist-packages/mercurial/
+
+
 
